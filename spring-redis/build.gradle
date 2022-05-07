@@ -1,0 +1,7 @@
+jar {
+    archivesBaseName = 'spring-redis'
+    archiveVersion = 'v1.0.0'
+}
+
+dependencies {
+}

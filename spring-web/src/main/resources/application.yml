@@ -1,0 +1,107 @@
+---
+spring:
+  profiles:
+    active: local
+  # DB Info
+  first:
+    datasource:
+      jdbcUrl: jdbc:mysql://127.0.0.1:3306/pntbiz_beacon?useUnicode=true&characterEncoding=utf8
+      username: pntbiz
+      password: pntbizakstp!@345
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      auto-commit: false
+      maximum-pool-size: 30
+      idle-timeout: 10000
+      minimum-idle: 10
+  # Kafka Info
+  kafka:
+    bootstrap-servers: 127.0.0.1:9092
+    producer:
+      acks: 1
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties:
+        max.block.ms: 3000
+    template:
+      default-topic: health
+    streams:
+      state-dir: ./state/manager/
+  cloud:
+    stream:
+      function:
+        definition:
+          requestBrokerPreprocessing;
+          resultHandlerPreprocessing;
+          waitHandlerPreprocessing;
+      bindings:
+        requestBrokerPreprocessing-in-0:
+          destination: semi.rpa.flow.waiting.request
+        requestBrokerPreprocessing-out-0:
+          destination: semi.rpa.flow.request
+        resultHandlerPreprocessing-in-0:
+          destination: semi.rpa.flow.result
+        resultHandlerPreprocessing-out-0:
+          destination: semi.rpa.flow.waiting.perform
+        resultHandlerPreprocessing-out-1:
+          destination: semi.rpa.flow.waiting.request
+        waitHandlerPreprocessing-in-0:
+          destination: semi.rpa.flow.waiting.perform
+        waitHandlerPreprocessing-out-0:
+          destination: semi.rpa.flow.result
+      kafka:
+        streams:
+          binder:
+            deserialization-exception-handler: logAndContinue
+            state-store-retry:
+              backoff-period: 1000
+              max-attempts: 3
+            functions:
+              requestBrokerPreprocessing:
+                applicationId: semi-rpa-request-broker-consumer
+                configuration:
+                  auto.offset.reset: earliest
+              resultHandlerPreprocessing:
+                applicationId: semi-rpa-result-handler-consumer
+                configuration:
+                  auto.offset.reset: earliest
+              waitHandlerPreprocessing:
+                applicationId: semi-rpa-wait-handler-consumer
+                configuration:
+                  auto.offset.reset: earliest
+            configuration:
+              commit.interval.ms: 1000
+  # Redis Info
+  redis:
+    mode: standalone
+    pool:
+      maxtotal: 1000
+      idle: 500
+      maxwaitmillis: 1000
+    standalone:
+      host: 127.0.0.1:6379
+      password: vldpsxl1q2w3e
+    cluster:
+      hosts:
+      password:
+    sentinel: # sentinel 모드는 미지원
+      hosts:
+      password:
+# Server Info
+server:
+  ssl:
+    enabled: false
+  tomcat:
+    uri-encoding: UTF-8
+  port: 8403
+  address: 0.0.0.0
+
+# Logging Info
+logging:
+  config: ${conf.home}logback-spring.xml
+
+# System Info
+system-config:
+
+  # Build Version
+  build.version: ${build.version}
+---

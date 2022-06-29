@@ -2,3 +2,4 @@ rootProject.name = 'spring-template'
 
 include 'spring-redis'
 include 'spring-web'
+include 'spring-rdbms:spring-jpa'

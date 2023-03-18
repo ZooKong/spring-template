@@ -1,9 +1,9 @@
-rootProject.name = 'spring-template'
+rootProject.name = 'z.spring-resources'
 
-include 'spring-web'
+include 'z.spring-web'
 
-include 'spring-cache:spring-redis'
+include 'z.spring-cache:z.spring-redis'
 
-include 'spring-rdbms:spring-jpa'
-include 'spring-rdbms:spring-jdbc'
-include 'spring-rdbms:spring-mybatis'
+include 'z.spring-rdbms:z.spring-jpa'
+include 'z.spring-rdbms:z.spring-jdbc'
+include 'z.spring-rdbms:z.spring-mybatis'

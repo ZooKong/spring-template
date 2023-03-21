@@ -1,11 +1,11 @@
 # Zookong Spring Template
 
-### 프로젝트 설명
+### 모듈 설명
 
-- Spring Template 프로젝트
-    - spring-redis : Redis 관련 연동 설정 및 템플릿 코드
-    - spring-web : Web 과 관련된 커스텀 설정 및 템플릿 작성 코드
-
+- spring-framework : Spring Framework 기반의 resource
+- security : 보안과 관련된 resource
+- geography : 지리학과 관련된 resource
+- etc : 기타 resource (특정 모듈이 커지는 경우 모듈 분리)
 
 ### 참고 문헌
 

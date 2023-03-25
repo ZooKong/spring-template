@@ -1,9 +1,4 @@
-rootProject.name = 'z.spring-resources'
+rootProject.name = 'zoo.java-resources'
 
-include 'z.spring-web'
-
-include 'z.spring-cache:z.spring-redis'
-
-include 'z.spring-rdbms:z.spring-jpa'
-include 'z.spring-rdbms:z.spring-jdbc'
-include 'z.spring-rdbms:z.spring-mybatis'
+include 'security'
+include 'geography'

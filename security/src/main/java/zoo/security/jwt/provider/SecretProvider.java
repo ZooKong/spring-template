@@ -1,4 +1,4 @@
-package zoo.security.jwt.support;
+package zoo.security.jwt.provider;
 
 @FunctionalInterface
 public interface SecretProvider {

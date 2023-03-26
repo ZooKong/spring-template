@@ -4,8 +4,6 @@ public interface Claims {
 
     HeaderClaims headerClaims();
 
-    PayloadPrivateClaims payloadPrivateClaims();
-
-    PayloadPublicClaims payloadPublicClaims();
+    PayloadClaims payloadPublicClaims();
 
 }

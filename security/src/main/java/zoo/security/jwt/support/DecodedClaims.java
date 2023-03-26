@@ -14,7 +14,7 @@ public class DecodedClaims {
     }
 
     public String getVer() {
-        return decodedJWT.getHeaderClaim("ver").asString();
+        return decodedJWT.getHeaderClaim(PrivateClaims.VERSION).asString();
     }
 
     public String getType() {
@@ -38,7 +38,7 @@ public class DecodedClaims {
     }
 
     public Map<String, Object> getPrivate() {
-        return decodedJWT.getClaim("private").asMap();
+        return decodedJWT.getClaim(PrivateClaims.PRIVATE).asMap();
     }
 
 }

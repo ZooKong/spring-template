@@ -2,9 +2,9 @@ package zoo.security.jwt.algorithms;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTCreator;
+import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.impl.PublicClaims;
-import com.auth0.jwt.interfaces.DecodedJWT;
 import zoo.security.jwt.dto.Claims;
 import zoo.security.jwt.dto.HeaderClaims;
 import zoo.security.jwt.dto.PayloadClaims;
@@ -46,8 +46,8 @@ public class HmacJsonWebToken {
     }
 
     public void verify(String token) {
-        DecodedJWT jwt = JWT.decode(token);
-        algorithm.verify(jwt);
+        JWTVerifier verifier = JWT.require(this.algorithm).build();
+        verifier.verify(token);
     }
 
     public DecodedClaims decode(String token) {

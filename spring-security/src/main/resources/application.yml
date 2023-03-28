@@ -1,0 +1,18 @@
+server:
+  port: 9000
+  error:
+    # default
+    path: "/error"
+    whitelabel:
+      enabled: false
+
+spring:
+  profiles:
+    active: local
+  thymeleaf:
+    # default
+    prefix: "classpath:/templates/"
+  web:
+    resources:
+      # default
+      static-locations: "classpath:/static/"

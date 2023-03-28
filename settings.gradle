@@ -2,3 +2,6 @@ rootProject.name = 'zoo.java-resources'
 
 include 'security'
 include 'geography'
+
+//about spring
+include 'spring-security'
